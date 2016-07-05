@@ -103,17 +103,29 @@
 <div class="col-sm-8" id="feature2">How often have you been confused about which movie to watch?!The solution is right here,you can compare the imdb ratings of any  movies of your choice.The movie names and their posters will be displayed in decreasing order of IMdB ratings.Enter the names of 4 movies and click on the COMPARE button.A click on the RESET button will hide the information displayed.</div>
 <div class="col-sm-4"><img src="imdb2.jpg" alt=" "></div>
 </div> 
+</div>
 
 
 
 
+<div class="container" id="div5"></div>
+<div class="container" id="div6">
+ <h2>GET ALL THE INFO ABOUT YOUR FAVOURITE TV SERIES HERE!!</h2> 
+ <div class="row" style="margin-top:2em;">
+  <div class="col-sm-3">Enter the name of the tv show</div>
+  <div class="col-sm-3">Enter the number of the season</div>
+  <div class="col-sm-3"></div>
+ </div>
+  <div class="row">
+  <div class="col-sm-3"><input type="text" required id="seriestitle"></input></div>
+  <div class="col-sm-3"><input type="text" required id="season"></input></div>
+  <div class="col-sm-3"><button id="gettvshow" onclick="mytvshow()" class="btn btn-info">SEARCH</button></div>
+  <div class="col-sm-3"><button id="reset3"  class="btn btn-info">RESET</button></div>
 
-
-
-
-
-
-
+  </div>
+  <div id="showinfo" style="margin-top:3em;"></div>
+  <div id="feature3">To get information about your favourite tv shows  enter the name of the tv show and the season number and with a click on the SEARCH button
+    you can get a list of episodes along with other information .Click on the RESET button to hide the information displayed.</div>
 </div>
 
 
@@ -305,6 +317,51 @@ function slideshow()
 }
 
 
+function mytvshow()
+{
+  var title=document.getElementById("seriestitle").value;
+  var season=document.getElementById("season").value;
+  var i;var out="<ol>";
+  var url="http://www.omdbapi.com/?t="+title+"&Season="+season;
+  var xhttp=new XMLHttpRequest();
+  xhttp.onreadystatechange=function()
+  {if(xhttp.readyState==4 && xhttp.status==200)
+  {var obj=JSON.parse(xhttp.responseText);
+   //document.getElementById("demo").innerHTML=xhttp.responseText;
+   for(i=0;i<obj.Episodes.length;i++)
+   {//out+="<li> Episode : "+obj.Episodes[i].Episode+" Title : "+obj.Episodes[i].Title+" Date of release: "+obj.Episodes[i].Released+" IMdB Rating : "+obj.Episodes[i].imdbRating+" IMdB Id : "obj.Episodes[i].imdbID+"</li>";
+    out+="<li> Episode Title : "+obj.Episodes[i].Title+"&nbsp; &nbsp; Imdb rating: "+obj.Episodes[i].imdbRating+"&nbsp; &nbsp; Date of release: "+obj.Episodes[i].Released+"</li>";
+   }
+    out+="</ol>";
+    document.getElementById("showinfo").innerHTML=out;
+  }
+  }
+  xhttp.open("GET",url,true);
+  xhttp.send();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(document).ready(function(){
   // Add smooth scrolling to all links
@@ -355,7 +412,18 @@ $(document).ready(function(){
         $("#comparison").slideUp("slow");
     });
 });
+$(document).ready(function(){
+    $("#gettvshow").click(function(){
+        $("#showinfo").slideDown("slow");
+    });
+});
 
+
+$(document).ready(function(){
+    $("#reset3").click(function(){
+        $("#showinfo").slideUp("slow");
+    });
+});
 
 
 

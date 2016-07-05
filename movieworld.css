@@ -86,12 +86,18 @@
         height:100px;
 }
 
-#feature1,#feature2
+#feature1,#feature2,#feature3
 {
 	border-style:double;
 	padding:20px;
 	font-size:22px;
 
+}
+#feature3
+{
+    margin-top:3em;
+    width:50%;
+    //text-align:center;
 }
 input[type=text], select 
 {
@@ -112,4 +118,26 @@ input[type=text]:focus
 #comparison
 {
     margin-top:5em;
+}
+#div5
+{
+    background-image: url("movieback2.jpg") ;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height:50em;
+    margin-top:0em;
+    background-size: cover;
+
+}
+#div6
+{   margin-top:0em;
+    z-index:3;
+    height:auto;
+    //background-color: yellow;
+    padding-top:5em;
+    padding-bottom:10em;
+    font-family:'Vollkorn', serif;
+    font-size:18px;
 }
